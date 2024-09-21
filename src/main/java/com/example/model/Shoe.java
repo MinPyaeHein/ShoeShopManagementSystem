@@ -35,6 +35,7 @@ public class Shoe {
         this.purchases.add(purchase);
     }
 
+
     public String getName() {
         return name;
     }

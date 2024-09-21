@@ -28,6 +28,30 @@ public class ShoeService extends BaseService{
 
         return shoe;
     }
+    
+    public Shoe stockIncreasement() throws IOException{
+    	Shoe shoe=null;
+    	String flag=null;
+    	
+    	do{ 
+    		System.out.println("Enter Shoe ID to update InStock: ");
+    	    int id=Integer.parseInt(br.readLine());
+    	    shoe=findShoeById(id);
+    	if(shoe != null) {
+    		System.out.println("Enter Update Shoe Instock Qty: ");
+    		int qty=Integer.parseInt(br.readLine());
+    	    shoe.setStockQty(shoe.getStockQty()+qty);
+    	    System.out.println(" Shoe Name: "+ shoe.getName() + " UPdated stock qty: "+ shoe.getStockQty());
+    	    System.out.println("Do you want to add more yes or no");
+    	    flag = br.readLine();
+    	}else {
+    		System.out.println("Enter correct Shoe ID! ");
+    	}
+    	}while(shoe == null || flag.equals("yes"));
+		return shoe;
+    }
+ 
+    
     public Shoe findShoeById(int id) {
         for(Shoe shoe : shoes){
             if(shoe.getId()==id){

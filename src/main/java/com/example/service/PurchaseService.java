@@ -12,6 +12,7 @@ public class PurchaseService extends BaseService{
 
     private CustomerService customerService;
     private ShoeService shoeService;
+  
     public PurchaseService() throws IOException {
         customerService=new CustomerService();
         shoeService=new ShoeService();
@@ -26,11 +27,35 @@ public class PurchaseService extends BaseService{
     public Purchase doPurchase() throws IOException {
         Customer customer=customerService.getCustomerData();
         Shoe shoe=shoeService.getShoeData();
+        
         System.out.println("Enter Qty of purchase::");
         int qty=Integer.parseInt(br.readLine());
+        
+        if(!stockValidate(qty)) {
+        	System.out.println("Purchase Failed");
+        	return null;
+        }
+       
         Purchase purchase=new Purchase(shoe,customer,qty);
+        
         return purchase;
     }
+    
+
+    
+    public boolean stockValidate(int qty) throws IOException {
+    	for(Shoe shoe: ShoeService.shoes ) {
+    		if(qty > shoe.getStockQty()) {
+        		System.out.println("Doesn't have a Enough in Stock for shoe: " + shoe.getName());
+        		System.out.println("Avaiable In stock is :  "+ shoe.getStockQty());
+        		return false;
+        	}
+    		
+    	}
+		return true;
+    	
+    }
+    
 }
 
 
