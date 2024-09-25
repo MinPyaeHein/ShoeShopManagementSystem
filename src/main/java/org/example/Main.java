@@ -21,32 +21,25 @@ public class Main {
             System.out.println("!!!!Welcome From Lily Shoe Shop!!!");
             System.out.println("1.Purchase Shoe:" +
                     "\n2.Sale Reports: " +
-<<<<<<< HEAD
             		"\n3.Update Shoe Stock qty "+
-=======
                     "\n3.Custer Dashboard: " +
->>>>>>> 940774eb39d20f3c5eb1b1a8cd0380633a9bf227
+
                     "\n4.Exit");
             menu=br.readLine();
             switch (menu) {
                 case "1":
                     PurchaseService purchaseService = new PurchaseService();
-            	
-
                     break;
                 case "2":
                     SaleReportService salesReportService = new SaleReportService();
                     break;
-<<<<<<< HEAD
                 case"3":
                 	ShoeService shoe=new ShoeService();
                 	shoe.stockIncreasement();
                 	
-=======
                 case "3":
                     CustomerController customerController = new CustomerController();
                     break;
->>>>>>> 940774eb39d20f3c5eb1b1a8cd0380633a9bf227
             }
         }while(!menu.equals("4"));
     }
