@@ -31,7 +31,7 @@ public class PurchaseService extends BaseService{
         System.out.println("Enter Qty of purchase::");
         int qty=Integer.parseInt(br.readLine());
         
-        if(!stockValidate(qty)) {
+        if(!stockValidate(shoe,qty)) {
         	System.out.println("Purchase Failed");
         	return null;
         }
@@ -43,14 +43,11 @@ public class PurchaseService extends BaseService{
     
 
     
-    public boolean stockValidate(int qty) throws IOException {
-    	for(Shoe shoe: ShoeService.shoes ) {
-    		if(qty > shoe.getStockQty()) {
-        		System.out.println("Doesn't have a Enough in Stock for shoe: " + shoe.getName());
-        		System.out.println("Avaiable In stock is :  "+ shoe.getStockQty());
+    public boolean stockValidate(Shoe shoeName,int qty) throws IOException {
+    		if(qty > shoeName.getStockQty()) {
+        		System.out.println("Doesn't have a Enough in Stock for shoe: " + shoeName.getName());
+        		System.out.println("Avaiable In stock is :  "+ shoeName.getStockQty());
         		return false;
-        	}
-    		
     	}
 		return true;
     	

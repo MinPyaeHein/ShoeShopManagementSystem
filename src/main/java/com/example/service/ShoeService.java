@@ -50,6 +50,8 @@ public class ShoeService extends BaseService{
     	}while(shoe == null || flag.equals("yes"));
 		return shoe;
     }
+    
+    
  
     
     public Shoe findShoeById(int id) {
