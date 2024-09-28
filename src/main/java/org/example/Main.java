@@ -22,9 +22,9 @@ public class Main {
             System.out.println("1.Purchase Shoe:" +
                     "\n2.Sale Reports: " +
             		"\n3.Update Shoe Stock qty "+
-                    "\n3.Custer Dashboard: " +
+                    "\n4.Custer Dashboard: " +
 
-                    "\n4.Exit");
+                    "\n5.Exit");
             menu=br.readLine();
             switch (menu) {
                 case "1":
@@ -37,10 +37,10 @@ public class Main {
                 	ShoeService shoe=new ShoeService();
                 	shoe.stockIncreasement();
                 	
-                case "3":
+                case"4":
                     CustomerController customerController = new CustomerController();
                     break;
             }
-        }while(!menu.equals("4"));
+        }while(!menu.equals("5"));
     }
 }

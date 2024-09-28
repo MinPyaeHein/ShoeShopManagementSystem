@@ -51,7 +51,7 @@ public class ShoeService extends BaseService{
  
     
     public Shoe findShoeById(int id) {
-        for(Shoe shoe : shoes){
+        for(Shoe shoe : shoeServiceDao.getAllShoes()){
             if(shoe.getId()==id){
                 return shoe;
             }
@@ -60,5 +60,5 @@ public class ShoeService extends BaseService{
     }
 
 
->>>>>>> 940774eb39d20f3c5eb1b1a8cd0380633a9bf227
+
 }
