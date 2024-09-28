@@ -8,12 +8,17 @@ public class Customer {
     private String email;
     private String address;
     private List<Purchase> purchases;
+    public Customer() {
+    }
     public Customer(String name, String email, String address) {
         this.purchases=new ArrayList<Purchase>();
         this.name = name;
         this.email = email;
         this.address = address;
     }
+
+
+
     public void addPurchase(Purchase purchase){
         this.purchases.add(purchase);
     }
@@ -47,7 +52,6 @@ public class Customer {
     public void setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
     }
-
     @Override
     public String toString() {
         return "Customer{" +

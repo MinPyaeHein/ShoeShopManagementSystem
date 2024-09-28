@@ -1,6 +1,9 @@
 package org.example;
 
+import com.example.controller.CustomerController;
+import com.example.model.Customer;
 import com.example.model.Purchase;
+import com.example.model.Shoe;
 import com.example.service.PurchaseService;
 import com.example.service.SaleReportService;
 
@@ -16,7 +19,8 @@ public class Main {
             System.out.println("!!!!Welcome From Lily Shoe Shop!!!");
             System.out.println("1.Purchase Shoe:" +
                     "\n2.Sale Reports: " +
-                    "\n3.Exit");
+                    "\n3.Custer Dashboard: " +
+                    "\n4.Exit");
             menu=br.readLine();
             switch (menu) {
                 case "1":
@@ -25,7 +29,10 @@ public class Main {
                 case "2":
                     SaleReportService salesReportService = new SaleReportService();
                     break;
+                case "3":
+                    CustomerController customerController = new CustomerController();
+                    break;
             }
-        }while(!menu.equals("3"));
+        }while(!menu.equals("4"));
     }
 }

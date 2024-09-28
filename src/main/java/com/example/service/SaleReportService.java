@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.dao.CustomerDao;
+import com.example.dao.ShoeDao;
 import com.example.model.Customer;
 import com.example.model.Purchase;
 import com.example.model.Shoe;
@@ -7,11 +9,15 @@ import com.example.model.Shoe;
 import java.io.IOException;
 
 public class SaleReportService extends BaseService{
+    private CustomerDao customerServiceDao;
+    private ShoeDao shoeServiceDao;
     private CustomerService customerService;
     private ShoeService shoeService;
     public SaleReportService() throws IOException {
         customerService=new CustomerService();
         shoeService=new ShoeService();
+        customerServiceDao=new CustomerDao();
+        shoeServiceDao=new ShoeDao();
         int menu=0;
         do{ System.out.println("!!!Welcome from sale report Menu!!!");
             System.out.println(
@@ -47,12 +53,12 @@ public class SaleReportService extends BaseService{
     }
 
     public void overAllSaleReports(){
-        for(Shoe shoe:ShoeService.shoes){
+        for(Shoe shoe: ShoeDao.getAllShoes()){
             System.out.println("Name Of Shoe="+shoe.getName()+"| TotalPurchaseCount=="+shoe.getPurchaseCount()+"|TotalPrice=="+shoe.getPurchaseCount()*shoe.getPrice());
         }
     }
     public void SaleReportByAllCusromer(){
-        for(Customer customer:CustomerService.customers){
+        for(Customer customer: CustomerDao.getAllCustomers()){
             System.out.println("Name Of Customer="+customer.getName());
             for(Purchase purchase:customer.getPurchases()){
                 System.out.println("Name Of Shoe="+purchase.getShoe().getName()+"| TotalPurchaseCount=="+purchase.getQty()+"|TotalPrice=="+purchase.getTotalPrice());
@@ -64,7 +70,7 @@ public class SaleReportService extends BaseService{
     public void SaleReportByIndividualCustomer() throws IOException {
        System.out.println("Enter Customer Email to get Sale Report::");
        String email=br.readLine();
-       Customer customer=customerService.findCustomerByEmail(email);
+       Customer customer=customerServiceDao.findCustomerByEmail(email);
        System.out.println("Name Of Customer="+customer.getName());
        for(Purchase purchase:customer.getPurchases()){
            System.out.println("Name Of Shoe="+purchase.getShoe().getName()+"| TotalPurchaseCount=="+purchase.getQty()+"|TotalPrice=="+purchase.getTotalPrice());
@@ -74,7 +80,7 @@ public class SaleReportService extends BaseService{
     public void saleReportByIndividualShoe() throws IOException {
         System.out.println("Enter Shoe Id to get Sale Report::");
         int id = Integer.parseInt(br.readLine());
-        Shoe shoe = shoeService.findShoeById(id);
+        Shoe shoe = this.shoeServiceDao.findShoeById(id);
         System.out.println("Name Of Shoe="+shoe.getName());
         for(Purchase purchase:shoe.getPurchases()){
             System.out.println("Name Of Customer="+purchase.getCustomer().getName()+"| TotalPurchaseCount=="+purchase.getQty()+"|TotalPrice=="+purchase.getTotalPrice());
