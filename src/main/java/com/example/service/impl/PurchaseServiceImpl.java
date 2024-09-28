@@ -3,14 +3,16 @@ package com.example.service.impl;
 import com.example.model.Customer;
 import com.example.model.Purchase;
 import com.example.model.Shoe;
+import com.example.service.PurchaseService;
 
 import java.io.IOException;
 
-public class PurchaseServiceImpl extends BaseServiceImpl {
+public class PurchaseServiceImpl extends BaseServiceImpl implements PurchaseService {
 
     private CustomerServiceImpl customerServiceImpl;
     private ShoeServiceImpl shoeServiceImpl;
-    public PurchaseServiceImpl() throws IOException {
+    
+    public  PurchaseServiceImpl() throws IOException {
     	customerServiceImpl=new CustomerServiceImpl();
     	shoeServiceImpl=new ShoeServiceImpl();
         String flag=null;
@@ -21,6 +23,7 @@ public class PurchaseServiceImpl extends BaseServiceImpl {
         }while(flag.equals("yes"));
 
     }
+
     public Purchase doPurchase() throws IOException {
         Customer customer=customerServiceImpl.getCustomerDataByEmail();
         Shoe shoe=shoeServiceImpl.getShoeData();
@@ -29,6 +32,9 @@ public class PurchaseServiceImpl extends BaseServiceImpl {
         Purchase purchase=new Purchase(shoe,customer,qty);
         return purchase;
     }
+
+	
+	
 }
 
 

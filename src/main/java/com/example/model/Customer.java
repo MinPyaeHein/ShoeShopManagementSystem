@@ -8,8 +8,7 @@ public class Customer {
     private String email;
     private String address;
     private List<Purchase> purchases;
-    public Customer() {
-    }
+
     public Customer(String name, String email, String address) {
         this.purchases=new ArrayList<Purchase>();
         this.name = name;

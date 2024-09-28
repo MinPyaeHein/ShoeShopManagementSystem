@@ -2,16 +2,18 @@ package com.example.service.impl;
 
 import com.example.dao.ShoeDao;
 import com.example.model.Shoe;
+import com.example.service.ShoeService;
 
 import java.io.IOException;
 
-public class ShoeServiceImpl extends BaseServiceImpl {
+public class ShoeServiceImpl extends BaseServiceImpl implements ShoeService {
 
 
     public ShoeDao shoeServiceDao;
     public ShoeServiceImpl() {
         this.shoeServiceDao=new ShoeDao();
     }
+ 
     public Shoe getShoeData() throws IOException {
         Shoe shoe=null;
         do{
@@ -23,5 +25,6 @@ public class ShoeServiceImpl extends BaseServiceImpl {
 
         return shoe;
     }
-
+	
+	
 }

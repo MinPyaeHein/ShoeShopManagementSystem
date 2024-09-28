@@ -5,15 +5,16 @@ import com.example.dao.ShoeDao;
 import com.example.model.Customer;
 import com.example.model.Purchase;
 import com.example.model.Shoe;
+import com.example.service.SaleReportSevice;
 
 import java.io.IOException;
 
-public class SaleReportServiceImpl extends BaseServiceImpl {
+public class SaleReportServiceImpl extends BaseServiceImpl implements SaleReportSevice{
     private CustomerDao customerServiceDao;
     private ShoeDao shoeServiceDao;
     private CustomerServiceImpl customerServiceImpl;
     private ShoeServiceImpl shoeServiceImpl;
-    public SaleReportServiceImpl() throws IOException {
+    public  SaleReportServiceImpl() throws IOException {
     	customerServiceImpl=new CustomerServiceImpl();
     	shoeServiceImpl=new ShoeServiceImpl();
         customerServiceDao=new CustomerDao();
