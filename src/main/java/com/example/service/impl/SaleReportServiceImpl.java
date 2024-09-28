@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.service.impl;
 
 import com.example.dao.CustomerDao;
 import com.example.dao.ShoeDao;
@@ -8,14 +8,14 @@ import com.example.model.Shoe;
 
 import java.io.IOException;
 
-public class SaleReportService extends BaseService{
+public class SaleReportServiceImpl extends BaseServiceImpl {
     private CustomerDao customerServiceDao;
     private ShoeDao shoeServiceDao;
-    private CustomerService customerService;
-    private ShoeService shoeService;
-    public SaleReportService() throws IOException {
-        customerService=new CustomerService();
-        shoeService=new ShoeService();
+    private CustomerServiceImpl customerServiceImpl;
+    private ShoeServiceImpl shoeServiceImpl;
+    public SaleReportServiceImpl() throws IOException {
+    	customerServiceImpl=new CustomerServiceImpl();
+    	shoeServiceImpl=new ShoeServiceImpl();
         customerServiceDao=new CustomerDao();
         shoeServiceDao=new ShoeDao();
         int menu=0;

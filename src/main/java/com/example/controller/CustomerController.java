@@ -2,13 +2,14 @@ package com.example.controller;
 
 import com.example.model.Customer;
 import com.example.service.CustomerService;
+import com.example.service.impl.CustomerServiceImpl;
 
 import java.io.IOException;
 
 public class CustomerController extends BaseController {
-    private CustomerService customerService;
+    private CustomerServiceImpl customerServiceImpl;
     public CustomerController() throws IOException {
-        this.customerService=new CustomerService();
+        this.customerServiceImpl=new CustomerServiceImpl();
         System.out.println("Welcome to Customer Master Dashboard!!");
         System.out.println("Enter menu number that you want to perform::\n " +
                 "1. Customer Registration\n " +
@@ -21,13 +22,13 @@ public class CustomerController extends BaseController {
                     registerCustomer();
                     break;
                 case 2:
-                    //TODO: update customer data
+                    this.updateCustomer();
                     break;
                 case 3:
-                    //TODO: delete customer
+                    this.deleteCustomer();
                     break;
                 case 4:
-                    //TODO: display all customers
+                    this.displayAllCustomer();
                     break;
                 default:
                     System.out.println("Invalid Option!!");
@@ -37,6 +38,28 @@ public class CustomerController extends BaseController {
 
     }
     public void registerCustomer() throws IOException {
+        Customer customer=getCustomerInformation();
+        if(this.customerServiceImpl.saveCustomer(customer)){
+            System.out.println("Customer Registered Successfully!!");
+        }else{
+            System.out.println("Failed to Register Customer!!");
+        }
+    }
+    public void updateCustomer() throws IOException {
+        Customer customer=customerServiceImpl.getCustomerDataByEmail();
+        if(customer!=null){
+            System.out.println("!!Current Customer Data!!\n"+customer);
+            Customer customerUpdated=this.getCustomerInformation();
+            customerServiceImpl.updateCustomer(customer, customerUpdated);
+        }
+
+    }
+    public void deleteCustomer() throws IOException {
+        Customer customer=this.customerServiceImpl.getCustomerDataByEmail();
+        this.customerServiceImpl.deleteCustomer(customer);
+    }
+
+    public Customer getCustomerInformation() throws IOException {
         Customer customer=new Customer();
         System.out.println("Enter Your Email!!");
         customer.setEmail(br.readLine());
@@ -44,11 +67,11 @@ public class CustomerController extends BaseController {
         customer.setName(br.readLine());
         System.out.println("Enter Your Address!!");
         customer.setAddress(br.readLine());
-        if(this.customerService.saveCustomerData(customer)){
-            System.out.println("Customer Registered Successfully!!");
-        }else{
-            System.out.println("Failed to Register Customer!!");
-        }
+        return customer;
+    }
+    public void displayAllCustomer(){
+        this.customerServiceImpl.displayAllCustomers();
+
     }
 
 }
