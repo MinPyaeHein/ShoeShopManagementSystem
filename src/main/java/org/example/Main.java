@@ -1,11 +1,8 @@
 package org.example;
 
 import com.example.controller.CustomerController;
-import com.example.model.Customer;
-import com.example.model.Purchase;
-import com.example.model.Shoe;
-import com.example.service.PurchaseService;
-import com.example.service.SaleReportService;
+import com.example.service.impl.PurchaseServiceImpl;
+import com.example.service.impl.SaleReportServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,10 +21,10 @@ public class Main {
             menu=br.readLine();
             switch (menu) {
                 case "1":
-                    PurchaseService purchaseService = new PurchaseService();
+                    PurchaseServiceImpl purchaseService = new PurchaseServiceImpl();
                     break;
                 case "2":
-                    SaleReportService salesReportService = new SaleReportService();
+                    SaleReportServiceImpl salesReportService = new SaleReportServiceImpl();
                     break;
                 case "3":
                     CustomerController customerController = new CustomerController();

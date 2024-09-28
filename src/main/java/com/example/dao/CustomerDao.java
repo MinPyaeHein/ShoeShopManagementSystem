@@ -26,8 +26,12 @@ public class CustomerDao {
     public static List<Customer> getAllCustomers( ){
         return customers;
     }
-     public void saveCustomer(Customer customer) {
+    public void saveCustomer(Customer customer) {
          customers.add(customer);
      }
+     public void deleteCustomerByEmail(String email) {
+                customers.remove(findCustomerByEmail(email));
+        }
+     }
 
-}
+

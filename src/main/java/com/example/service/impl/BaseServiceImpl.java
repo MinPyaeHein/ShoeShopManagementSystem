@@ -1,12 +1,8 @@
-package com.example.service;
-
-import com.example.model.Customer;
+package com.example.service.impl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
-public class BaseService {
+public class BaseServiceImpl {
     BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 }
